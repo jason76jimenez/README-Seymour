@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./utils/generateMarkdown.js');
-// const pageHTML = generatePage(author, title, questions);
+const fs = require('fs');
+//const generateMarkdown = require('./utils/generateMarkdown');
+//const pageHTML = generateMarkdown();
 
 //function writeToFile(fileName, data) {
 //}
@@ -58,7 +58,7 @@ const promptReadme = () => {
             choices: ['JavaScript', 'Bootstrap', 'HTML', 'CSS', 'jQuery', 'Node', 'ES6']
         },
         {
-            type: 'input',
+            type: 'confirm',
             name: 'confirmTOC',
             message: 'Do you need to add a Table of Contents? y or N (Recommended if it is a large project)',
             default: false,
@@ -66,15 +66,14 @@ const promptReadme = () => {
         {
             type: 'input',
             name: 'TOC',
-
+            message: 'Enter Table of Contents.',
             when: ({confirmTOC}) => {
                 if (confirmTOC) {
-                    return true;
+                    prompt(TOC);
                 }else{
                     return false;
                 }
             }
-
         },
         {
             type: 'input',
@@ -104,13 +103,15 @@ const promptReadme = () => {
     ])
 };
 
-// fs.writeFile('index.html', generatePage(author, title), err => {
+// fs.writeFile('index.html', generateMarkdown(answers), err => {
 //     if (err) throw new Error(err);
 //     console.log('README complete!');
 // });
 
     promptReadme()
+   // .then(promptTOC)
     .then(answers => {
         console.log('answers:', answers);
-    });
+    })
+//pageHTML();
     //.then(readmeData => console.log(readmeData));

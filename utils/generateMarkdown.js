@@ -1,5 +1,6 @@
 // function to generate markdown for README
-const generatePage = (answers) => {
+
+const generateMarkdown = (answers) => {
   return `
   <!DOCTYPE html>
     <html lang="en">
@@ -14,9 +15,10 @@ const generatePage = (answers) => {
         <h1>${answers.author}</h1>
         <h2>${answers.title}</h2>
         <h2><a href="https://github.com/${answers.github}">Github</a><h2>
-    </body>
+    [[toc]]
+        </body>
     </html>
 `;
 };
 
-module.exports = generatePage;
+module.exports = generateMarkdown;
