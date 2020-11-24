@@ -1,11 +1,8 @@
 const inquirer = require('inquirer');
+// const fs = require('fs');
+// const generatePage = require('./utils/generateMarkdown.js');
+// const pageHTML = generatePage(author, title, questions);
 
-// array of questions for user
-//const questions = [
-
-//];
-
-// function to write README file
 //function writeToFile(fileName, data) {
 //}
 
@@ -14,50 +11,76 @@ const inquirer = require('inquirer');
 
 //}
 
-// function call to initialize program
-//init();
-
-
-
-
-
-const promptUser = () => {
-   inquirer.prompt([
+const promptReadme = () => {
+   return inquirer.prompt([
         {
             type: 'input',
             name: 'author',
             message: 'What is your name? (Required)',
-            validate: nameInput => {
-                if (nameInput) {
+            validate: authorInput => {
+                if (authorInput) {
                     return true;
                 }else{
                     console.log('Please enter a name.');
                     return false;
                 }
             }
-        }
-//         {
-//             type: 'input',
-//             name: 'title',
-//             message: 'What is your project\'s name? (Required)'
-//         },
-//         {
-//             type: 'input',
-//             name: 'description',
-//             message: 'Would you like to provide a description of your APP? y or N',
-//             confirm: '(add boolean function)'
-//         },
-//         {
-//             type: 'input',
-//             name: 'table-of-contents',
-//             message: 'Do you need to add a Table of Contents? y or N (Recommended if it is a large project)',
-//             confirm: '(add a TOC)'
-//         },
-//         {
-//             type: 'input',
-//             name: 'installation',
-//             message: 'Give step by step for installation of the application. (Required)'
-//         },
+        },
+        {
+            type: 'input',
+            name: 'title',
+            message: 'What is your project name? (Required)',
+            validate: titleInput => {
+                if (titleInput) {
+                    return true;
+                }else{
+                    console.log('Enter project name.');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: 'Please provide a description of your APP. Include what the APP does, tech used, challenges faced and any future improvements you would like to see.',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                }else{
+                    console.log('Enter a description.');
+                }
+            }
+        },
+        {
+            type: 'checkbox',
+            name: 'tech',
+            message: 'Include tech here.',
+            choices: ['JavaScript', 'Bootstrap', 'HTML', 'CSS', 'jQuery', 'Node', 'ES6']
+        },
+        {
+            type: 'input',
+            name: 'confirmTOC',
+            message: 'Do you need to add a Table of Contents? y or N (Recommended if it is a large project)',
+            default: false,
+        },
+        {
+            type: 'input',
+            name: 'TOC',
+
+            when: ({confirmTOC}) => {
+                if (confirmTOC) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        },
+        {
+            type: 'input',
+            name: 'installation',
+            message: 'Give step by step for installation of the application. (Required)'
+        },
 //         {
 //             type: 'input',
 //             name: 'usage',
@@ -73,11 +96,21 @@ const promptUser = () => {
 //             name: 'tests',
 //             message: '(add tests)'
 //         },
-        // {
-        //     type: 'input',
-        //     name: 'questions',
-        //     message: '(add questions)'
-        // }
+        {
+            type: 'input',
+            name: 'questions',
+            message: '(add questions)'
+        }
     ])
 };
-    promptUser().then(answers => console.log(answers));
+
+// fs.writeFile('index.html', generatePage(author, title), err => {
+//     if (err) throw new Error(err);
+//     console.log('README complete!');
+// });
+
+    promptReadme()
+    .then(answers => {
+        console.log('answers:', answers);
+    });
+    //.then(readmeData => console.log(readmeData));
