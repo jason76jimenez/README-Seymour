@@ -1,6 +1,6 @@
 // function to generate markdown for README
 
-const generateMarkdown = (answers) => {
+const generateMarkdown = (fileName, data) => {
   return `
   <!DOCTYPE html>
     <html lang="en">
@@ -12,9 +12,9 @@ const generateMarkdown = (answers) => {
     </head>
 
     <body>
-        <h1>${answers.author}</h1>
-        <h2>${answers.title}</h2>
-        <h2><a href="https://github.com/${answers.github}">Github</a><h2>
+        <h1>${fileName}</h1>
+        <h2>${name}</h2>
+        <h2><a href="https://github.com/${fileName.github}">Github</a><h2>
     [[toc]]
         </body>
     </html>
