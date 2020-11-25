@@ -1,117 +1,68 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-//const generateMarkdown = require('./utils/generateMarkdown');
-//const pageHTML = generateMarkdown();
+const generateMarkdown = require('./utils/generateMarkdown');
 
-//function writeToFile(fileName, data) {
-//}
 
-// function to initialize program
-//function init() {
-
-//}
-
-const promptReadme = () => {
-   return inquirer.prompt([
+    const questions = [
         {
-            type: 'input',
-            name: 'author',
-            message: 'What is your name? (Required)',
-            validate: authorInput => {
-                if (authorInput) {
-                    return true;
-                }else{
-                    console.log('Please enter a name.');
-                    return false;
-                }
-            }
+          type: "input",
+          name: "github",
+          message: "What is your GitHub username?"
         },
         {
-            type: 'input',
-            name: 'title',
-            message: 'What is your project name? (Required)',
-            validate: titleInput => {
-                if (titleInput) {
-                    return true;
-                }else{
-                    console.log('Enter project name.');
-                    return false;
-                }
-            }
+          type: "input",
+          name: "email",
+          message: "What is your email address?"
         },
         {
-            type: 'input',
-            name: 'description',
-            message: 'Please provide a description of your APP. Include what the APP does, tech used, challenges faced and any future improvements you would like to see.',
-            validate: descriptionInput => {
-                if (descriptionInput) {
-                    return true;
-                }else{
-                    console.log('Enter a description.');
-                }
-            }
+          type: "input",
+          name: "title",
+          message: "What is your project's name?"
         },
         {
-            type: 'checkbox',
-            name: 'tech',
-            message: 'Include tech here.',
-            choices: ['JavaScript', 'Bootstrap', 'HTML', 'CSS', 'jQuery', 'Node', 'ES6']
+          type: "input",
+          name: "description",
+          message: "Please write a short description of your project"
         },
         {
-            type: 'confirm',
-            name: 'confirmTOC',
-            message: 'Do you need to add a Table of Contents? y or N (Recommended if it is a large project)',
-            default: false,
+          type: "list",
+          name: "license",
+          message: "What kind of license should your project have?",
+          choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"]
         },
         {
-            type: 'input',
-            name: 'TOC',
-            message: 'Enter Table of Contents.',
-            when: ({confirmTOC}) => {
-                if (confirmTOC) {
-                    prompt(TOC);
-                }else{
-                    return false;
-                }
-            }
+          type: "input",
+          name: "installation",
+          message: "What command should be run to install dependencies?",
+          default: "npm i"
         },
         {
-            type: 'input',
-            name: 'installation',
-            message: 'Give step by step for installation of the application. (Required)'
+          type: "input",
+          name: "test",
+          message: "What command should be run to run tests?",
+          default: "npm test"
         },
-//         {
-//             type: 'input',
-//             name: 'usage',
-//             message: 'Provide instructions on how to use the app. (Required)'
-//         },
-//         {
-//             type: 'input',
-//             name: 'contributing',
-//             message: 'If you want other developers to contribute to your project, add guidlines for how.'
-//         },
-//         {
-//             type: 'input',
-//             name: 'tests',
-//             message: '(add tests)'
-//         },
         {
-            type: 'input',
-            name: 'questions',
-            message: '(add questions)'
+          type: "input",
+          name: "usage",
+          message: "What does the user need to know about using the repo?"
+        },
+        {
+          type: "input",
+          name: "contributing",
+          message: "What does the user need to know about contributing to the repo?"
         }
-    ])
-};
-
-// fs.writeFile('index.html', generateMarkdown(answers), err => {
-//     if (err) throw new Error(err);
-//     console.log('README complete!');
-// });
-
-    promptReadme()
-   // .then(promptTOC)
-    .then(answers => {
-        console.log('answers:', answers);
-    })
-//pageHTML();
-    //.then(readmeData => console.log(readmeData));
+      ];
+      function writeToFile(fileName, data) {
+        return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+      }
+      function init() {
+        inquirer.prompt(questions)
+        .then((inquirerResponses) => {
+          console.log("Generating README...");
+          writeToFile("README.md", generateMarkdown({...inquirerResponses}));
+        })
+      }
+      init();
+      
+      
