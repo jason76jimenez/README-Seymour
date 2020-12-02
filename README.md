@@ -1,7 +1,7 @@
 
     # undefined
 
-    ### Table Of Contents
+    ## Table Of Contents
         * [Description](#description)
         * [Tech](#tech)
         * [Installation](#installation)
@@ -10,22 +10,30 @@
         * [Contributing](#contributing)
         * [Contact](#contact) 
 
-    ## undefined
+    ## Description
+    undefined
 
-    ## undefined
+    ## Technology
+    undefined
 
-    ## undefined
+    ## Installation
+    undefined
 
-    ## undefined
+    ## Usage
+    undefined
 
-    ## undefined
+    ## Credits
+    undefined
 
-    ## undefined
+    ## License
+    undefined
 
-    ## undefined
+    ## Contributing
+    undefined
 
-    ## undefined
-    
+    ## Contact
+    undefined
+
         ### undefined
-        ### undefined
 
+        ### undefined

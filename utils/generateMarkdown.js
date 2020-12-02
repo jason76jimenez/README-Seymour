@@ -1,10 +1,10 @@
 // function to generate markdown for README
 
-const generateMarkdown = (data) => {
+function generateMarkdown(data) {
   return `
-    # ${data.title}
+    # ${data.Title}
 
-    ### Table Of Contents
+    ## Table Of Contents
         * [Description](#description)
         * [Tech](#tech)
         * [Installation](#installation)
@@ -13,26 +13,34 @@ const generateMarkdown = (data) => {
         * [Contributing](#contributing)
         * [Contact](#contact) 
 
-    ## ${data.description}
+    ## Description
+    ${data.description}
 
-    ## ${data.tech}
+    ## Technology
+    ${data.tech}
 
-    ## ${data.installation}
+    ## Installation
+    ${data.installation}
 
-    ## ${data.usage}
+    ## Usage
+    ${data.usage}
 
-    ## ${data.credits}
+    ## Credits
+    ${data.credits}
 
-    ## ${data.license}
+    ## License
+    ${data.license}
 
-    ## ${data.contributing}
+    ## Contributing
+    ${data.contributing}
 
-    ## ${data.contact}
+    ## Contact
+    ${data.contact}
 
         ### ${data.github}
 
         ### ${data.email}
 `;
-};
+}
 
 module.exports = generateMarkdown;
